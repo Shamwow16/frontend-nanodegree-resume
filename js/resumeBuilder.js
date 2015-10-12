@@ -27,10 +27,12 @@ var bio = {
 
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+var formattedEmail = HTMLemail.replace("%data%",bio.contact_info.email);
 
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
+$("#topContacts").append(formattedEmail);
 
 
 
