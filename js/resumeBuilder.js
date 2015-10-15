@@ -22,8 +22,19 @@ bio.displayTitle = function(){
 	$("#header").append(mainTitle);
 };
 
-bio.displayTitle();
+bio.displayContacts = function(){
+	var contactSection = $(".contact-section");
+	for(var contact in bio.contact_info){
+		var contactItemDiv = $("<div class='col-md-3 contact-item'></div>");
+		var contactItem = contact + ": " + bio.contact_info[contact];
+		console.log(contactItem);
+		contactSection.append(contactItemDiv);
+		contactItemDiv.html(contactItem);
+	}
+};
 
+bio.displayTitle();
+bio.displayContacts();
 
 
 
