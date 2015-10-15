@@ -34,7 +34,7 @@ $("#skills").append(formattedSkills);
 
 }
 
-$("#main").append(internationalizeButton);
+
 
 function inName(){
 	var oldNameArray = bio.name.split(" ");
@@ -101,7 +101,7 @@ var projects={
 		"dates":"10/08/2015-Present",
 		"description":"Using Javascript and JQuery in combination with HTML/CSS to learn about web interactivity. This project allows for a firm understanding of the flow and control structure of Javascript. It reinforces the concept of functions and the idea that everything within Javascript is an object. The online resume will also serve as a starting point for employers to view my bio, work and project experience as well as my skills",
 		"images":"images/sample-resume.jpg"
-	}			
+	}
 ]
 }
 
@@ -109,7 +109,7 @@ projects.display = function(){
 	for(project in projects.projects){
 		$("#projects").append(HTMLprojectStart);
 		formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
-		$(".project-entry:last").append(formattedProjectTitle); 
+		$(".project-entry:last").append(formattedProjectTitle);
 		formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projects[project].dates);
 		$(".project-entry:last").append(formattedProjectDates);
 		formattedProjectDescription= HTMLprojectDescription.replace("%data%",projects.projects[project].description);
@@ -176,7 +176,7 @@ var formattedWelcome = HTMLwelcomeMsg.replace("%data%",bio.welcome_message);
 var formattedImage = HTMLbioPic.replace("%data%",bio.picture_URL);
 var formattedSkills = HTMLskills.replace("%data%",bio.skills);
 var formattedWorkTitle = HTMLworkTitle.replace("%data%",work["position"]);
-var formattedSchoolName = HTMLschoolName.replace("%data%",education.name); 
+var formattedSchoolName = HTMLschoolName.replace("%data%",education.name);
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
