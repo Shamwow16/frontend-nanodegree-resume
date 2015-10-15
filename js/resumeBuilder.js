@@ -17,6 +17,40 @@ var bio = {
 };
 
 
+var facebookBarData = {
+    labels: ['Sexy', 'Friendly', 'Hard-working', 'Reliable', 'Muscular'],
+    datasets: [
+        {
+            label: "What Shamyle's Facebook friends say",
+            fillColor: '#382765',
+            data: [10, 4, 6, 8, 10]
+        }
+    ]
+};
+
+var facebookDoughnutdata = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Sexy"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Friendly"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Hardworking"
+    }
+]
+
+
+
 bio.displayTitle = function(){
 	var name = bio.name;
 	var mainTitle = $("<h1 class='main-title text-center'></h1>").html(name);
@@ -39,21 +73,34 @@ bio.displayContacts();
 
 //Code for Welcome Text Fade In Section
 var welcomeText = "Welcome to the realm of Shamyle Ghazali";
+var quote = "Perseverance Commands Success";
 
 $(function(){
 var welcomeDiv = $("<div class='text-center col-sm-12'></div>")
-var welcomeParagraph = $("<p id='welcome-text'></p>");
-welcomeDiv.append(welcomeParagraph);
-welcomeParagraph.html(welcomeText);
+var welcomeQuote = $("<p id='quote' class='welcome-text col-sm-12'></p>");
+welcomeDiv.append(welcomeQuote);
+
+welcomeQuote.html(quote);
+console.log(welcomeQuote.html());
 $('.welcome').append(welcomeDiv);
-$('#welcome-section').fadeIn(2000);
-$('#welcome-text').fadeIn(3000);
+//$(welcomeParagraph).css("display","none");
+$('#welcome-section').fadeIn();
+$('#quote').fadeOut(4000,function(){
+	$(this).html(welcomeText)
+}).fadeIn(1000);
+//$(welcomeParagraph).fadeIn(6000);
 });
 
 //Code for Skill Bar Charts
-var ctx = $("#myChart").get(0).getContext("2d");
-var myNewChart = new Chart(ctx);
+var ctx = $("#facebook-chart").get(0).getContext("2d");
+var facebookDoughnutChart = new Chart(ctx).Doughnut(facebookDoughnutdata);
+/*var facebookSkillBarChart = new Chart(ctx).Bar(facebookBarData,{
+	barValueSpacing:8,
+	multiTooltipTemplate:"<%= datasetLabel %> - <%= value %>"
+});*/
 
+var ctx = $("#personalChart").get(0).getContext("2d");
+var mySkillBarChart = new Chart(ctx).Doughnut(facebookDoughnutdata);
 
 
 //
@@ -75,13 +122,13 @@ $("#skills").append(formattedSkills);
 
 
 
-function inName(){
+/*function inName(){
 	var oldNameArray = bio.name.split(" ");
 	var lastName = oldNameArray[1].toUpperCase();
 	var firstName = oldNameArray[0].toLowerCase().split("");
 	firstName = firstName[0].toUpperCase() + firstName.slice(1).join('');
 	return firstName + " " + lastName;
-}
+}*/
 var work={
 	"jobs":[{
 		"employer":"Northwestern University Information Technology",

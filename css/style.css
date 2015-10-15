@@ -1,4 +1,4 @@
-/* body,
+body,
 div,
 ul,
 li,
@@ -9,10 +9,8 @@ h3,
 h4,
 h5,
 h6 {
-  padding:0;
-  margin:0;
-  font-family: "Roboto", sans-serif;
-} */
+  font-family: arial;
+}
 
 .clear-fix {
   overflow: auto;
@@ -100,15 +98,30 @@ a {
   background-color: #333;
 }
 
-#welcome-text {
+.welcome-text {
   padding: 0.5em;
-  font-size: 150px;
   color: #fff;
-  line-height: 150px;
+}
+
+.main-title{
+  font-size: 6em;
+  font-weight: bold;
+}
+
+#quote{
+  color: #fff;
+  font-size: 5em;
+  line-height: 1.5em;
 }
 
 #skills-section {
+  margin-top: 10em;
   }
+
+.charts{
+  width: 250px;
+  height: 250px;
+}
 
 #skills-h3 {
   color: #f5ae23;
