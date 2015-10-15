@@ -54,12 +54,15 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 <body>
   <div class="container">
     <div class="row">
-      <header class="col-md-12" id="header">
-
-      </header>
+      <header class="col-md-12" id="header"></header>
     </div>
-      <div class="row contact-section">
+
+    <div class="row contact-section"></div>
+
+    <section id="welcome-section">
+      <div class="row welcome">
       </div>
+    </section>
   </div>
 
 
@@ -98,6 +101,9 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     if(document.getElementsByClassName('flex-item').length === 0) {
       document.getElementById('topContacts').style.display = 'none';
     }
+
+      //document.getElementById('welcome-text').style.display = 'none';
+
     if(document.getElementsByTagName('h1').length === 0) {
       document.getElementById('header').style.display = 'none';
     }

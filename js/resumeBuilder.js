@@ -16,6 +16,7 @@ var bio = {
 	"skills":["communication","critical thinking","teamwork","project management"]
 };
 
+
 bio.displayTitle = function(){
 	var name = bio.name;
 	var mainTitle = $("<h1 class='main-title text-center'></h1>").html(name);
@@ -27,7 +28,6 @@ bio.displayContacts = function(){
 	for(var contact in bio.contact_info){
 		var contactItemDiv = $("<div class='col-md-3 contact-item'></div>");
 		var contactItem = contact + ": " + bio.contact_info[contact];
-		console.log(contactItem);
 		contactSection.append(contactItemDiv);
 		contactItemDiv.html(contactItem);
 	}
@@ -37,7 +37,18 @@ bio.displayTitle();
 bio.displayContacts();
 
 
+//Code for Welcome Text Fade In Section
+var welcomeText = "Welcome to the realm of Shamyle Ghazali";
 
+$(function(){
+var welcomeDiv = $("<div class='text-center col-md-12'><p id='#welcome-text'></p></div>")
+//welcomeParagraph.html(welcomeText);
+//welcomeParagraph.addClass('col-md-12 text-center');
+console.log(welcomeDiv.html());
+$('.welcome').append(welcomeDiv);
+welcomeDiv.text(welcomeText);
+$('#welcome-section').fadeIn(2000);
+});
 /*if(bio.skills.length>0){
 	$("#header").append(HTMLskillsStart);
 

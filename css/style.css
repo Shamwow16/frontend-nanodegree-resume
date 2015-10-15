@@ -94,6 +94,10 @@ a {
   display: block;
 }
 
+#welcome-section{
+  display: none;
+}
+
 .welcome-message {
   font-style: italic;
   font-size: 18px;
