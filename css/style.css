@@ -96,13 +96,14 @@ a {
 
 #welcome-section{
   display: none;
+  margin-top: 5em;
 }
 
-.welcome-message {
-  font-style: italic;
-  font-size: 18px;
-  color: #f3f3f3;
-  line-height: 28px;
+#welcome-text {
+
+  font-size: 150px;
+  color: #333;
+  line-height: 150px;
 }
 
 #skills-h3 {

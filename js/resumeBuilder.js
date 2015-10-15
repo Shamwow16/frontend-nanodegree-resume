@@ -41,12 +41,11 @@ bio.displayContacts();
 var welcomeText = "Welcome to the realm of Shamyle Ghazali";
 
 $(function(){
-var welcomeDiv = $("<div class='text-center col-md-12'><p id='#welcome-text'></p></div>")
-//welcomeParagraph.html(welcomeText);
-//welcomeParagraph.addClass('col-md-12 text-center');
-console.log(welcomeDiv.html());
+var welcomeDiv = $("<div class='text-center col-md-12'></div>")
+var welcomeParagraph = $("<p id='welcome-text'></p>");
+welcomeDiv.append(welcomeParagraph);
+welcomeParagraph.html(welcomeText);
 $('.welcome').append(welcomeDiv);
-welcomeDiv.text(welcomeText);
 $('#welcome-section').fadeIn(2000);
 });
 /*if(bio.skills.length>0){
