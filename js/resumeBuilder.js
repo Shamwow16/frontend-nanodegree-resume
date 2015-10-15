@@ -41,13 +41,23 @@ bio.displayContacts();
 var welcomeText = "Welcome to the realm of Shamyle Ghazali";
 
 $(function(){
-var welcomeDiv = $("<div class='text-center col-md-12'></div>")
+var welcomeDiv = $("<div class='text-center col-sm-12'></div>")
 var welcomeParagraph = $("<p id='welcome-text'></p>");
 welcomeDiv.append(welcomeParagraph);
 welcomeParagraph.html(welcomeText);
 $('.welcome').append(welcomeDiv);
 $('#welcome-section').fadeIn(2000);
+$('#welcome-text').fadeIn(3000);
 });
+
+//Code for Skill Bar Charts
+var ctx = $("#myChart").get(0).getContext("2d");
+var myNewChart = new Chart(ctx);
+
+
+
+//
+
 /*if(bio.skills.length>0){
 	$("#header").append(HTMLskillsStart);
 

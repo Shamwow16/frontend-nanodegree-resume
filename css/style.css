@@ -97,14 +97,18 @@ a {
 #welcome-section{
   display: none;
   margin-top: 5em;
+  background-color: #333;
 }
 
 #welcome-text {
-
+  padding: 0.5em;
   font-size: 150px;
-  color: #333;
+  color: #fff;
   line-height: 150px;
 }
+
+#skills-section {
+  }
 
 #skills-h3 {
   color: #f5ae23;

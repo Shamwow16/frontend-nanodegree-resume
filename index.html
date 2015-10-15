@@ -39,6 +39,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   you can't accomplish with vanilla (regular) JavaScript.
   -->
   <script src="js/jQuery.js"></script>
+  <script src="js/Chart.js"></script>
 
   <!-- More on helper.js in the class -->
   <script src="js/helper.js"></script>
@@ -59,12 +60,23 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
     <div class="row contact-section"></div>
 
+  <div class="container">
     <section id="welcome-section">
       <div class="row welcome">
       </div>
     </section>
   </div>
+  <div class="container">
+    <section id="skills-section">
+      <div class="row">
+        <div class="col-sm-6">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+      </div>
+    </section>
+  </div>
 
+  </div>
 
 
   <!--
@@ -72,6 +84,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
   writing. In resumeBuilder.js, you'll be writing code that builds the resume
   dynamically when this website, index.html, is opened.
   -->
+
   <script src="js/resumeBuilder.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
