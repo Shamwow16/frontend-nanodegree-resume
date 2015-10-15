@@ -16,10 +16,18 @@ var bio = {
 	"skills":["communication","critical thinking","teamwork","project management"]
 };
 
-var formattedName = HTMLheaderName.replace("%data%",bio.name);
-$("#header").append(formattedName);
+bio.displayTitle = function(){
+	var name = bio.name;
+	var mainTitle = $("<h1 class='main-title text-center'></h1>").html(name);
+	$("#header").append(mainTitle);
+};
 
-if(bio.skills.length>0){
+bio.displayTitle();
+
+
+
+
+/*if(bio.skills.length>0){
 	$("#header").append(HTMLskillsStart);
 
 
@@ -32,7 +40,7 @@ $("#skills").append(formattedSkills);
 formattedSkills = HTMLskills.replace("%data%",bio.skills[3]);
 $("#skills").append(formattedSkills);
 
-}
+}*/
 
 
 
