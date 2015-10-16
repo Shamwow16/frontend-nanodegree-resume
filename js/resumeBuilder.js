@@ -2,7 +2,6 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
-
 var bio = {
 	"name":"Shamyle Ghazali",
 	"role":"Front End Web Developer",
@@ -66,6 +65,10 @@ $('#quote').fadeOut(4000,function(){
 //$(welcomeParagraph).fadeIn(6000);
 });
 
+$(function(){
+	$('.jumbotron').css("background-image","images/city.gif");
+
+})
 
 
 //Code for Skill Bar Charts

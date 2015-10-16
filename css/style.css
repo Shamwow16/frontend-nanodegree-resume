@@ -166,6 +166,9 @@ a {
   padding: 10px;
 }
 
+.jumbotron{
+  background-image: url("../images/city.gif");
+}
 .center-content {
   padding: 2.5% 5%;
 }
