@@ -66,7 +66,7 @@ $('#quote').fadeOut(4000,function(){
 });
 
 $(function(){
-	$('.jumbotron').css("background-image","images/city.gif");
+	$('.jumbotron').css("background-image","images/sky.jpg");
 
 })
 
@@ -191,12 +191,29 @@ var projects={
 ]
 }
 projects.displayProjectTitle = function(){
-var projectWrapperTitle = $("<h2 class='text-center'>Projects</h2>");
+var projectWrapperTitle = $("<h1 class='text-center'>Projects</h1>");
 var projectWrapper = $(".project-area-title");
 projectWrapper.append(projectWrapperTitle);
 };
 
-projects.addImageToCarousel = function(){
+projects.displayProjectDetails = function(){
+
+	var projectSection = $(".project-section");
+	for(project in projects.projects){
+	var projectColumnDiv = $("<div class='col-sm-12'></div>");
+	var projectTitleDiv = $("<h2 class='project-title text-center'></h2>");
+	var projectDateDiv = $("<h3 class='project-dates text-center'></h3>");
+	projectColumnDiv.append(projectTitleDiv);
+	projectColumnDiv.append(projectDateDiv);
+	projectTitleDiv.html(projects.projects[project].title);
+	projectDateDiv.html(projects.projects[project].dates);
+	console.log(projects.projects[project].dates);
+	projectSection.append(projectColumnDiv);
+}
+}
+
+projects.displayProjectDetails();
+/*projects.addImageToCarousel = function(){
 	var innerCarousel = $(".carousel-inner")
 	for(var project in projects.projects){
 		var innerCarouselDiv = $("<div class='item'></div>");
@@ -208,9 +225,11 @@ projects.addImageToCarousel = function(){
 		innerCarousel.append(innerCarouselDiv);
 		imageCarouselDiv.attr("src",projects.projects[project].images);
 	}
-}
+}*/
 
-projects.addImageToCarousel();
+
+
+//projects.addImageToCarousel();
 
 projects.displayProjectTitle();
 //projectWrapperTitle.text(projectTitle);
