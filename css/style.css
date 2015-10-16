@@ -59,9 +59,10 @@ h5 {
 
 }
 
-.main-title {
-  font-family: arial;
+hr{
+  border-top: 2px solid #333;
 }
+
 .date-text {
   font-style: italic;
   font-size: 14px;
@@ -104,7 +105,7 @@ a {
 }
 
 .main-title{
-  font-size: 6em;
+  font-size: 5em;
   font-weight: bold;
 }
 
