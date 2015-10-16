@@ -57,7 +57,6 @@ var welcomeQuote = $("<p id='quote' class='welcome-text col-sm-12'></p>");
 welcomeDiv.append(welcomeQuote);
 
 welcomeQuote.html(quote);
-console.log(welcomeQuote.html());
 $('.welcome').append(welcomeDiv);
 //$(welcomeParagraph).css("display","none");
 $('#welcome-section').fadeIn();
@@ -194,11 +193,27 @@ var projectWrapper = $(".project-area-title");
 projectWrapper.append(projectWrapperTitle);
 };
 
+projects.addImageToCarousel = function(){
+	var innerCarousel = $(".carousel-inner")
+	for(var project in projects.projects){
+		var innerCarouselDiv = $("<div class='item'></div>");
+		var imageCarouselDiv = $("<img>");
+		if(project == 0){
+			innerCarouselDiv.addClass("active");
+		}
+		innerCarouselDiv.append(imageCarouselDiv);
+		innerCarousel.append(innerCarouselDiv);
+		imageCarouselDiv.attr("src",projects.projects[project].images);
+	}
+}
+
+projects.addImageToCarousel();
+
 projects.displayProjectTitle();
 //projectWrapperTitle.text(projectTitle);
 
 projects.display = function(){
-	projectWrapper.append(projectWrapperTitle)
+	//projectWrapper.append(projectWrapperTitle)
 	for(project in projects.projects){
 		$("#projects").append(HTMLprojectStart);
 		formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
