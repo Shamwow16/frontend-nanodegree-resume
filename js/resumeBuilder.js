@@ -12,7 +12,6 @@ var bio = {
 		github:"Shamwow16",
 		location:"Chicago" },
 	"picture_URL":"images/biopic.jpg",
-	"welcome_message":"Welcome to Shamyle Ghazali's Resume",
 	"skills":["communication","critical thinking","teamwork","project management"]
 };
 
@@ -27,29 +26,6 @@ var facebookBarData = {
         }
     ]
 };
-
-var facebookDoughnutdata = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E",
-        label: "Sexy"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1",
-        label: "Friendly"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870",
-        label: "Hardworking"
-    }
-]
-
-
 
 bio.displayTitle = function(){
 	var name = bio.name;
@@ -91,7 +67,30 @@ $('#quote').fadeOut(4000,function(){
 //$(welcomeParagraph).fadeIn(6000);
 });
 
+
+
 //Code for Skill Bar Charts
+var facebookDoughnutdata = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Sexy"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Friendly"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Hardworking"
+    }
+]
+
 var ctx = $("#facebook-chart").get(0).getContext("2d");
 var facebookDoughnutChart = new Chart(ctx).Doughnut(facebookDoughnutdata);
 /*var facebookSkillBarChart = new Chart(ctx).Bar(facebookBarData,{
@@ -103,7 +102,6 @@ var ctx = $("#personalChart").get(0).getContext("2d");
 var mySkillBarChart = new Chart(ctx).Doughnut(facebookDoughnutdata);
 
 
-//
 
 /*if(bio.skills.length>0){
 	$("#header").append(HTMLskillsStart);
@@ -172,7 +170,7 @@ for(job in work.jobs){
 
 
 
-displayWork();
+//displayWork();
 var projects={
 	"projects":[
 	{
@@ -190,8 +188,17 @@ var projects={
 	}
 ]
 }
+projects.displayProjectTitle = function(){
+var projectWrapperTitle = $("<h2 class='text-center'>Projects</h2>");
+var projectWrapper = $(".project-area-title");
+projectWrapper.append(projectWrapperTitle);
+};
+
+projects.displayProjectTitle();
+//projectWrapperTitle.text(projectTitle);
 
 projects.display = function(){
+	projectWrapper.append(projectWrapperTitle)
 	for(project in projects.projects){
 		$("#projects").append(HTMLprojectStart);
 		formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
@@ -205,7 +212,7 @@ projects.display = function(){
 	}
 }
 
-projects.display();
+//projects.display();
 
 var education={
 	"schools" : [{
