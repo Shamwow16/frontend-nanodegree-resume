@@ -115,6 +115,19 @@ a {
   line-height: 1.5em;
 }
 
+.education-section{
+  margin-top: 3em;
+}
+
+.school-logo{
+  text-align: center;
+}
+
+.school-item{
+  font-size: 2em;
+  text-align: center;
+}
+
 #skills-section {
   margin-top: 10em;
   }
@@ -167,7 +180,7 @@ a {
 }
 
 .jumbotron{
-  background-image: url("../images/city.gif");
+  background-image: url("../images/sky.jpg");
 }
 .center-content {
   padding: 2.5% 5%;
@@ -240,3 +253,5 @@ span {
     display: block;
   }
 }
+
+

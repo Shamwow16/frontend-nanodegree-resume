@@ -66,7 +66,7 @@ $('#quote').fadeOut(4000,function(){
 });
 
 $(function(){
-	$('.jumbotron').css("background-image","images/sky.jpg");
+	$('.jumbotron').css("background-image",'url:"images/sky.jpg"');
 
 })
 
@@ -179,23 +179,23 @@ var projects={
 		"title":"Personal Portfolio",
 		"dates":"09/23/2015-10/04/2015",
 		"description":"Developed a responsive personal portfolio using the Bootstrap framework along with custom CSS. The main goal was to provide potential employers with a presentation of all the projects that I have and will be completing as part of my Nanodegree. The portfolio highlights the use of responsive design and the benefits of a grid layout. Images in the website are responsive and the file type was taken into consideration as part of image optimization.",
-		"images":"images/portfolio.png"
+		"images":"images/portfolio-image.jpg"
 	}
 	,
 	{
 		"title":"Online Resume",
 		"dates":"10/08/2015-Present",
 		"description":"Using Javascript and JQuery in combination with HTML/CSS to learn about web interactivity. This project allows for a firm understanding of the flow and control structure of Javascript. It reinforces the concept of functions and the idea that everything within Javascript is an object. The online resume will also serve as a starting point for employers to view my bio, work and project experience as well as my skills",
-		"images":"images/sample-resume.jpg"
+		"images":"images/portfolio-image.jpg"
 	}
 ]
 }
-projects.displayProjectTitle = function(){
+/*projects.displayProjectTitle = function(){
 var projectWrapperTitle = $("<h1 class='text-center'>Projects</h1>");
 var projectWrapper = $(".project-area-title");
 projectWrapper.append(projectWrapperTitle);
 };
-
+*/
 projects.displayProjectDetails = function(){
 
 	var projectSection = $(".project-section");
@@ -212,44 +212,52 @@ projects.displayProjectDetails = function(){
 }
 }
 
-projects.displayProjectDetails();
-/*projects.addImageToCarousel = function(){
-	var innerCarousel = $(".carousel-inner")
-	for(var project in projects.projects){
-		var innerCarouselDiv = $("<div class='item'></div>");
-		var imageCarouselDiv = $("<img>");
-		if(project == 0){
-			innerCarouselDiv.addClass("active");
-		}
-		innerCarouselDiv.append(imageCarouselDiv);
-		innerCarousel.append(innerCarouselDiv);
-		imageCarouselDiv.attr("src",projects.projects[project].images);
-	}
-}*/
+//projects.displayProjectDetails();
+//projects.displayProjectTitle();
+var projectWrapperTitle = $("<h1 class='text-center'>Projects</h1>");
+var projectSection = $('.project-section');
 
-
-
-//projects.addImageToCarousel();
-
-projects.displayProjectTitle();
-//projectWrapperTitle.text(projectTitle);
+projects.addImage = function(){
+		//var projectImage = $("<img class='img-responsive jumbotron'>");
+		var imageCaptionDiv = $("<p class='caption'></p>");
+		var imageCaption = "Testing this caption";
+		var projectImageDiv = $("<div class='jumbotron text-center'></div>");
+		projectSection.append(projectImageDiv);
+		//projectImage.attr("src", imageUrl);
+		projectImageDiv.css("background-image","url(projects.projects[images])");
+		projectImageDiv.append(imageCaptionDiv);
+		imageCaptionDiv.text(imageCaption);
+}
 
 projects.display = function(){
 	//projectWrapper.append(projectWrapperTitle)
 	for(project in projects.projects){
-		$("#projects").append(HTMLprojectStart);
-		formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
-		$(".project-entry:last").append(formattedProjectTitle);
-		formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projects[project].dates);
-		$(".project-entry:last").append(formattedProjectDates);
-		formattedProjectDescription= HTMLprojectDescription.replace("%data%",projects.projects[project].description);
-		$(".project-entry:last").append(formattedProjectDescription);
-		formattedProjectImage = HTMLprojectImage.replace("%data%",projects.projects[project].images);
-		$(".project-entry:last").append(formattedProjectImage);
+		$(".project-area-title").append(projectWrapperTitle);
+		var projectColumnDiv = $("<div class='col-sm-12'></div>");
+		var projectTitleDiv = $("<h2 class='project-title text-center'></h2>");
+		var projectDateDiv = $("<h3 class='project-dates text-center'></h3>");
+		var imageCaptionDiv = $("<p class='caption'></p>");
+		var imageCaption = "Testing this caption";
+		var projectImageDiv = $("<div class='jumbotron text-center'></div>");
+
+		//var projectImage = $("<img class='img-responsive'>");
+		//var imageCaptionDiv = $("div class='caption'></div>");
+		//var imageCaption = projects.projects[project].title;
+		projectSection.append(projectColumnDiv);
+		projectSection.append(projectImageDiv);
+		projectColumnDiv.append(projectTitleDiv);
+		projectTitleDiv.text(projects.projects[project].title);
+		projectColumnDiv.append(projectDateDiv);
+		projectDateDiv.text(projects.projects[project].dates);
+		var projectImageUrl = projects.projects[project].images;
+		console.log(projectImageUrl);
+		projectImageDiv.css("background-image","url"+ "(" + projectImageUrl + ")");
+		projectImageDiv.append(imageCaptionDiv);
+		imageCaptionDiv.text(imageCaption);
 	}
 }
 
-//projects.display();
+projects.display();
 
 var education={
 	"schools" : [{
@@ -258,15 +266,16 @@ var education={
 		"degree":"Bachelors",
 		"major":"Chemical Engineering",
 		"years":"2009-2013",
+		"image":"http://placehold.it/350x150",
 	}
 	],
 
 	"onlineCourses" : [
 	{
-		"title":"",
-		"school":"",
-		"dates":"",
-		"url":""
+		"title":"Udacity Front End Web Development Nanodegree",
+		"school":"Udacity",
+		"dates":"09/23/15-Present",
+		"url":"www.udacity.com"
 	},
 
 	{
@@ -287,6 +296,44 @@ var education={
 
 
 }
+
+var educationWrapperTitle = $("<h1 class='text-center'>Education</h1>")
+
+education.addInfo = function(){
+	var schools = education.schools;
+
+	for(var school in schools){
+		for(var schoolInfo in schools[school]){
+			var keyArray = Object.keys(schools[school]);
+				if(schoolInfo == keyArray[keyArray.length - 1]){
+					continue;
+				}
+				var schoolListItem = $("<li class='school-item'></li>");
+				$(".school-info").append(schoolListItem);
+				schoolListItem.html(schools[school][schoolInfo]);
+		}
+
+	}
+}
+
+education.addInfo();
+
+education.display = function(){
+	$('#education-section').prepend(educationWrapperTitle);
+	for(var school in education.schools){
+		var schoolLogoUrl = education.schools[school].image;
+		var schoolLogoElement = $("<img class='img-responsive' alt='school-logo'>");
+		schoolLogoElement.attr("src",schoolLogoUrl);
+		$(".school-logo").append(schoolLogoElement);
+		var schoolName = education.schools[school].name;
+		var schoolDegree = education.schools[school].degree;
+		//$(".school-info").append(education.schools[school]);
+
+
+	}
+}
+
+education.display();
 
 
 
