@@ -1,3 +1,7 @@
+body {
+  background-color:#ddedf0;
+}
+
 body,
 div,
 ul,
@@ -9,30 +13,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: arial;
+  font-family: 'Lato', sans-serif;
 }
 
 .clear-fix {
   overflow: auto;
 }
 
-.education-entry,
-.work-entry,
-.project-entry {
-  padding: 0 5%;
+img {
+  padding: 10px;
 }
 
-/* h1 {
-  font-size: 40px;
-  color: #f5a623;
+h1 {
+  font-size: 50px;
   line-height: 48px;
-  display: inline;
-} */
+}
+
+span {
+  padding: 5px;
+}
+
 
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999;
+  color: #333;
   line-height: 29px;
   padding: 10px;
 }
@@ -51,39 +56,19 @@ h4 {
   line-height: 17px;
 }
 
-h2,
-h3,
-h4,
-h5 {
-  padding:10px 5%;
-
-}
-
-hr{
+hr {
   border-top: 2px solid #333;
 }
 
-.date-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: left;
-}
-
-.location-text {
-  font-style: italic;
-  font-size: 14px;
-  color: #999;
-  line-height: 16px;
-  float: right;
-
-}
 
 p {
   font-size: 14px;
   color: #333;
   line-height: 21px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 a {
@@ -93,9 +78,30 @@ a {
   display: block;
 }
 
-#welcome-section{
-  display: none;
+header {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  color: #fff;
+  background-color: #333;
+  margin-bottom: 2em;
+}
+
+footer {
+  margin-right:0px !important;
+  margin-left: 0px !important;
+  background-color: #333;
+}
+
+footer h3 {
+  color: #fff;
+  font-style: inherit;
+}
+
+/*Bio and Welcome Section*/
+
+#welcome-section {
   margin-top: 5em;
+  margin-bottom: 10em;
   background-color: #333;
 }
 
@@ -104,37 +110,114 @@ a {
   color: #fff;
 }
 
-.main-title{
+.btn-primary {
+  margin-top:2em;
+  font-size: 1.5em;
+}
+
+.role {
+  margin-top: 5em;
+  font-size: 2em;
+  color: #fff;
+  line-height: 1em;
+  letter-spacing: 0.1em;
+}
+
+.main-title {
   font-size: 5em;
   font-weight: bold;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  line-height: 1em;
 }
 
-#quote{
-  color: #fff;
-  font-size: 5em;
-  line-height: 1.5em;
+.contact-item {
+  font-size: 1.25em;
 }
 
-.education-section{
+/*Education Section*/
+
+.education-section-title h1 {
+  margin-bottom: 2.5em;
+}
+
+.education-section {
   margin-top: 3em;
 }
 
-.school-logo{
-  text-align: center;
+.education-title {
+  margin-bottom: 1em;
+  padding: 1em;
 }
 
-.school-item{
-  font-size: 2em;
-  text-align: center;
+.spacing {
+  margin-bottom: 5em;
+  padding: 2em;
 }
+
+.info {
+  margin-top: 2em;
+}
+
+.education-name {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.school-location {
+  font-style: italic;
+}
+
+.degree {
+  font-weight: bold;
+}
+
+.coursework-list {
+  margin-top: 1em;
+}
+
+
+
+
+/*Work Section*/
+
+#work-section {
+  margin-top: 5em;
+}
+
+.work-location {
+  font-size: 0.7em;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.work-entry {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+
+.work-description {
+   color:#333;
+}
+
+
+
+
+/*Skills Section*/
 
 #skills-section {
-  margin-top: 10em;
+  margin-bottom: 10em;
   }
 
-.charts{
-  width: 250px;
-  height: 250px;
+.skills-section-title {
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+#chart_div {
+  width: 100%;
 }
 
 #skills-h3 {
@@ -142,98 +225,46 @@ a {
   display: none;
 }
 
-.orange {
-  background-color: #f5ae23;
+
+
+/*Projects Section*/
+
+.project-entry {
+  margin-bottom: 15em;
 }
 
-.orange-text {
-  color: #f5ae23;
-}
-
-.white-text {
-  font-weight: bold;
-  color: #fff;
-}
-
-.gray {
-  background-color: #f3f3f3;
-  padding-bottom: 10px;
-  clear:both;
-}
-
-.dark-gray {
-  background-color: #4a4a4a;
-}
-
-/* TODO: Replace with image later */
-/* #header {
-  background-color: #484848;
-} */
-
-.flex-box {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 10px;
-}
-
-.jumbotron{
-  background-image: url("../images/sky.jpg");
-}
-.center-content {
-  padding: 2.5% 5%;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.biopic {
-  float: left;
-  padding: 10px;
-  width: 200px;
-  display: none;
-}
-
-img {
-  padding: 10px;
-}
-
-span {
-  padding: 5px;
-}
-
-#lets-connect {
-  text-align: center;
-}
-
-/* Media queries to handle various device widths */
-
-@media only screen and (max-width: 1024px) {
-  #lets-connect {
-    margin-top: 5%;
+.project-entry:hover {
+  -moz-box-shadow: 0 0 20px rgba(0,0,0,1);
+  -webkit-box-shadow: 0 0 20px rgba(0,0,0,1);
+  box-shadow: 0 0 20px rgba(0,0,0,1);
   }
+
+.jumbotron {
+  background-color: #333;
 }
 
-@media only screen and (max-width:900px) {
-  .biopic {
-    width: 175px;
-  }
+.project-description {
+  color:#fff;
 }
 
-@media only screen and (max-width: 750px) {
-  #lets-connect {
-    margin-top: 10%;
-  }
-  .biopic {
-    width: 150px;
-  }
-  .welcome-message {
-    display: none;
-  }
+ .project-padding {
+  margin-bottom: 15em;
 }
+.project-section-title {
+  margin-bottom: 5em;
+}
+.project-title {
+  color:#fff;
+}
+
+.project-dates {
+  color:#fff;
+}
+
+
+
+
+/*Maps Section*/
 
 #map {
   display: block;
@@ -247,11 +278,5 @@ span {
   padding-bottom: 5%;
 }
 
-@media only screen and (min-width: 750px) {
-  #skills-h3,
-  .biopic {
-    display: block;
-  }
-}
 
 
