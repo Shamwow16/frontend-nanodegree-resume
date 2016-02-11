@@ -46,7 +46,8 @@ var model = {
 		"url":"www.lynda.com",
 		"relevantCoursework":["Intro to Java","Object-Oriented Design"]
 	}
-	]
+	],
+
 
 
 },
@@ -90,8 +91,8 @@ projects:{
 		"images":"images/sky.jpg"
 	}
 	]
-}
-
+},
+	quote:'"Set your life on fire. Seek those who fan your flames." - Rumi'
 }
 
 console.log(model.projects.projects);
@@ -115,6 +116,9 @@ var octopus = {
 	},
 	getWelcomeText:function(){
 		return model.bio.role;
+	},
+	getQuote:function(){
+		return model.quote;
 	}
 
 
@@ -155,6 +159,7 @@ var view = {
 	},
 	displayWelcome:function(){
 		this.welcomeRow = $('.welcome');
+		this.welcomeQuote = $('.welcome-quote');
 		this.bioPic = $("<img class='col-sm-4 img-responsive img-circle text-right' src='" + octopus.getPicUrl() + "'>");
 		this.welcomeText = $("<h3 class='role text-right'>" +octopus.getWelcomeText() + "</h3>");
 		this.portfolioButton = $("<button class='btn btn-primary'>View My Portfolio</button>");
@@ -163,7 +168,8 @@ var view = {
 		this.welcomeDiv.append(this.portfolioButton);
 		this.welcomeRow.append(this.bioPic);
 		this.welcomeRow.append(this.welcomeDiv);
-		console.log(this.bioPic);
+		this.welcomeQuote.html(octopus.getQuote());
+		console.log(octopus.getQuote());
 	}
 }
 
