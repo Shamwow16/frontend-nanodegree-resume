@@ -109,7 +109,14 @@ var octopus = {
 	},
 	getContactIcons:function(){
 		return model.bio.contact_logo;
+	},
+	getPicUrl:function(){
+		return model.bio.picture_URL;
+	},
+	getWelcomeText:function(){
+		return model.bio.role;
 	}
+
 
 }
 
@@ -123,6 +130,7 @@ var view = {
 	render:function(){
 		this.displayTitle();
 		this.displayContacts();
+		this.displayWelcome();
 	},
 	displayTitle:function(){
 		this.resumeHeadingDiv = $('#header');
@@ -138,13 +146,24 @@ var view = {
 
 		var i = 0;
 		for(var contact in this.contacts){
-
 			this.contactItem = $("<div class='col-md-3 contact-item'></div>");
 			console.log(this.contacts[contact]);
 			this.contactItem.html(this.contactIcons[i] + this.contacts[contact]);
 			this.contactSection.append(this.contactItem);
 			i++
 		}
+	},
+	displayWelcome:function(){
+		this.welcomeRow = $('.welcome');
+		this.bioPic = $("<img class='col-sm-4 img-responsive img-circle text-right' src='" + octopus.getPicUrl() + "'>");
+		this.welcomeText = $("<h3 class='role text-right'>" +octopus.getWelcomeText() + "</h3>");
+		this.portfolioButton = $("<button class='btn btn-primary'>View My Portfolio</button>");
+		this.welcomeDiv = $("<div class='col-sm-8 text-center'></div>");
+		this.welcomeDiv.append(this.welcomeText);
+		this.welcomeDiv.append(this.portfolioButton);
+		this.welcomeRow.append(this.bioPic);
+		this.welcomeRow.append(this.welcomeDiv);
+		console.log(this.bioPic);
 	}
 }
 
@@ -162,43 +181,9 @@ var bio = {
 		"skills":["communication","critical thinking","teamwork","project management"]
 	};
 
-	/*bio.displayTitle = function(){
-		var name = bio.name;
-		var mainTitle = $("<h1 class='main-title text-center'></h1>").html(name);
-		$("#header").append(mainTitle);
-	};*/
-
-	/*bio.displayContacts = function(){
-		var contactSection = $(".contact-section");
-		for(var contact in bio.contact_info){
-			var contactItemDiv = $("<div class='col-md-3 contact-item'></div>");
-			var contactIcon;
-			if(contact=="email"){
-				contactIcon = "<i class='fa fa-envelope fa-fw'></i>";
-			}
-
-			else if (contact=="github"){
-				contactIcon = "<i class='fa fa-github fa-fw'></i>"
-			}
-
-			else if (contact =="mobile"){
-				contactIcon = "<i class='fa fa-mobile fa-fw'></i>"
-			}
-
-			else{
-				contactIcon = "<i class='fa fa-map-marker fa-fw'></i>"
-			}
-			var contactItem = contactIcon + " " + bio.contact_info[contact];
-			contactSection.append(contactItemDiv);
-			contactItemDiv.html(contactItem);
-		}
-	};*/
-
-/*bio.displayTitle();*/
-/*bio.displayContacts();*/
 
 //// WELCOME SECTION /////
-welcomeRow = $(".welcome");
+/*welcomeRow = $(".welcome");
 var bioPic = $("<img class='col-sm-4 img-responsive img-circle text-right' src='" + bio.picture_URL + "'>");
 var welcomeDiv = $("<div class='col-sm-8 text-center'></div>");
 var welcomeText = $("<h3 class='role text-right'>" + bio.role + "</h3>");
@@ -207,7 +192,7 @@ welcomeDiv.append(welcomeText);
 welcomeDiv.append(portfolioButton);
 welcomeRow.append(bioPic);
 welcomeRow.append(welcomeDiv);
-
+*/
 
 /////EDUCATION SECTION/////
 
