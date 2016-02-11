@@ -9,6 +9,8 @@ var model = {
 		mobile:"224-241-4290",
 		github:"Shamwow16",
 		location:"Chicago, IL" },
+	"contact_logo" : ["<i class='fa fa-envelope fa-fw'></i>","<i class='fa fa-mobile fa-fw'></i>",
+	"<i class='fa fa-github fa-fw'></i>","<i class='fa fa-map-marker fa-fw'></i>"],
 		"picture_URL":"images/biopic.jpg",
 		"skills":["communication","critical thinking","teamwork","project management"]},
 
@@ -101,21 +103,48 @@ var octopus = {
 	},
 	getResumeHeading: function(){
 		return model.bio.name;
+	},
+	getContacts: function(){
+		return model.bio.contact_info;
+	},
+	getContactIcons:function(){
+		return model.bio.contact_logo;
 	}
+
 }
 
 //VIEW
 var view = {
 	init:function(){
-		this.resumeHeadingDiv = $('#header');
-		this.resumeHeading = $("<h1 class='main-title text-center'></h1>");
-		this.resumeHeading.html(octopus.getResumeHeading());
+
 		console.log(this.resumeHeading);
 		this.render();
 	},
 	render:function(){
+		this.displayTitle();
+		this.displayContacts();
+	},
+	displayTitle:function(){
+		this.resumeHeadingDiv = $('#header');
+		this.resumeHeading = $("<h1 class='main-title text-center'></h1>");
+		this.resumeHeading.html(octopus.getResumeHeading());
 		this.resumeHeadingDiv.append(this.resumeHeading);
+	},
+	displayContacts:function(){
+		this.contactSection = $(".contact-section");
+		this.contacts = octopus.getContacts();
+		this.contactIcons = octopus.getContactIcons();
+		console.log(this.contacts);
 
+		var i = 0;
+		for(var contact in this.contacts){
+
+			this.contactItem = $("<div class='col-md-3 contact-item'></div>");
+			console.log(this.contacts[contact]);
+			this.contactItem.html(this.contactIcons[i] + this.contacts[contact]);
+			this.contactSection.append(this.contactItem);
+			i++
+		}
 	}
 }
 
@@ -139,7 +168,7 @@ var bio = {
 		$("#header").append(mainTitle);
 	};*/
 
-	bio.displayContacts = function(){
+	/*bio.displayContacts = function(){
 		var contactSection = $(".contact-section");
 		for(var contact in bio.contact_info){
 			var contactItemDiv = $("<div class='col-md-3 contact-item'></div>");
@@ -163,10 +192,10 @@ var bio = {
 			contactSection.append(contactItemDiv);
 			contactItemDiv.html(contactItem);
 		}
-	};
+	};*/
 
 /*bio.displayTitle();*/
-bio.displayContacts();
+/*bio.displayContacts();*/
 
 //// WELCOME SECTION /////
 welcomeRow = $(".welcome");
