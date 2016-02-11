@@ -1,4 +1,125 @@
 ////BIO SECTION/////
+//MODEL
+
+var model = {
+	bio: {"name":"Shamyle N. Ghazali",
+	"role":"Front End Web Developer Extraordinaire",
+	"contact_info":{
+		email:"shamyleg@gmail.com",
+		mobile:"224-241-4290",
+		github:"Shamwow16",
+		location:"Chicago, IL" },
+		"picture_URL":"images/biopic.jpg",
+		"skills":["communication","critical thinking","teamwork","project management"]},
+
+	education :{
+	"schools" : [
+	{
+		"name":"Northwestern University",
+		"location":"Evanston, IL",
+		"degree":"Bachelors of Science",
+		"major":"Chemical Engineering, Thematic focus in Computer Science and French",
+		"years":"2009-2013",
+		"url":"http://www.northwestern.edu/",
+		"image":"images/NU_Logo.gif",
+		"relevantCoursework":["Fundamentals of Object-Oriented Programming","Data Structures and Algorithms","Engineering Analysis","Engineering Design and Communication","Calculus 1-3"]
+	}
+	],
+
+	"onlineCourses" : [
+	{
+		"title":"Udacity Front End Web Development Nanodegree",
+		"provider":"Udacity",
+		"dates":"09/15-Present",
+		"image":"images/Udacity_Logo.gif",
+		"url":"www.udacity.com",
+		"relevantCoursework":["Intro to HTML and CSS","Version Control using GitHub","Responsive Web Design and Image Optimization","Javascript Basics","Intro to JQuery"]
+	},
+
+	{
+		"title":"Foundations of Programming:Fundamentals",
+		"provider":"Lynda.com",
+		"dates":"07/14-08/14",
+		"image":"images/lynda_logo.gif",
+		"url":"www.lynda.com",
+		"relevantCoursework":["Intro to Java","Object-Oriented Design"]
+	}
+	]
+
+
+},
+work:{
+	"jobs":[
+	{
+		"employer":"Northwestern University Information Technology",
+		"title":"Lead Support Center Analyst",
+		"location":"Evanston, IL",
+		"dates":"04/2011-06/2013",
+		"description":"Provided first tier technical support to Northwestern faculty, staff and students via phone, email and in-person. Performed virus remediation, network troubleshooting, MS Exchange account maintenance and identity management. Provided in-house software training and customer service training to all junior and senior analysts. Presented tech talks aimed at bringing students and faculty members up to date with the latest technologies being introduced on campus."
+	},
+	{
+		"employer":"Regis Technologies",
+		"title":"Temporary Quality Control Engineer",
+		"location":"Morton Grove, IL",
+		"dates":"01/2014-10/2014",
+		"description":"Conducted QC experiments for contract-based pharamaceutical manufacturing. Ran purity assays and improvement studies for quality control. Provided recommendations on increasing purity of active pharamaceutical ingredients (APIs)"
+	},
+	{"employer":"SMS Assist",
+	"title":"Project Manager",
+	"location":"Chicago, IL",
+	"dates":"11/2014-07/2015",
+	"description":"Managed work orders between affiliates and customers to ensure timely work completion. Provided customer support and escalated emergency issues. Ensured that affiliates were paid on time by tracking billed work orders. Assisted the procurement team with finding new affiliates across the country."
+}
+]
+},
+projects:{
+	"projects":[
+	{
+		"title":"Personal Portfolio",
+		"dates":"09/23/2015-10/04/2015",
+		"description":"Developed a responsive personal portfolio using the Bootstrap framework along with custom CSS. The main goal was to provide potential employers with a presentation of all the projects that I have and will be completing as part of my Nanodegree. The portfolio highlights the use of responsive design and the benefits of a grid layout. Images in the website are responsive and the file type was taken into consideration as part of image optimization.",
+		"images":"images/sky.jpg"
+	}
+	,
+	{
+		"title":"Online Resume",
+		"dates":"10/08/2015-Present",
+		"description":"Using Javascript and JQuery in combination with HTML/CSS to learn about web interactivity. This project allows for a firm understanding of the flow and control structure of Javascript. It reinforces the concept of functions and the idea that everything within Javascript is an object. The online resume will also serve as a starting point for employers to view my bio, work and project experience as well as my skills",
+		"images":"images/sky.jpg"
+	}
+	]
+}
+
+}
+
+console.log(model.projects.projects);
+
+//OCTOPUS
+var octopus = {
+	init:function(){
+		view.init();
+	},
+	getResumeHeading: function(){
+		return model.bio.name;
+	}
+}
+
+//VIEW
+var view = {
+	init:function(){
+		this.resumeHeadingDiv = $('#header');
+		this.resumeHeading = $("<h1 class='main-title text-center'></h1>");
+		this.resumeHeading.html(octopus.getResumeHeading());
+		console.log(this.resumeHeading);
+		this.render();
+	},
+	render:function(){
+		this.resumeHeadingDiv.append(this.resumeHeading);
+
+	}
+}
+
+octopus.init();
 
 var bio = {
 	"name":"Shamyle N. Ghazali",
@@ -12,11 +133,11 @@ var bio = {
 		"skills":["communication","critical thinking","teamwork","project management"]
 	};
 
-	bio.displayTitle = function(){
+	/*bio.displayTitle = function(){
 		var name = bio.name;
 		var mainTitle = $("<h1 class='main-title text-center'></h1>").html(name);
 		$("#header").append(mainTitle);
-	};
+	};*/
 
 	bio.displayContacts = function(){
 		var contactSection = $(".contact-section");
@@ -44,7 +165,7 @@ var bio = {
 		}
 	};
 
-bio.displayTitle();
+/*bio.displayTitle();*/
 bio.displayContacts();
 
 //// WELCOME SECTION /////
@@ -254,12 +375,19 @@ projects.displayProject = function(){
 
 projects.displayProject();
 
-/////SKILLS SECTION//////
 
+
+
+
+/////SKILLS SECTION//////
 $("#skills-section").prepend("<h1 class='skills-section-title text-center'>Skills</h1>");
 
 google.load('visualization', '1', {packages: ['corechart', 'bar']});
 google.setOnLoadCallback(drawBasic);
+
+
+
+
 
 $(document).ready(function () {
 	$(window).resize(function(){
