@@ -14,9 +14,9 @@ var model = {
 		"picture_URL":"images/biopic.jpg",
 		"skills":["communication","critical thinking","teamwork","project management"]},
 
-	education :{
-	"schools" : [
-	{
+	education :
+ 		[
+		{
 		"name":"Northwestern University",
 		"location":"Evanston, IL",
 		"degree":"Bachelors of Science",
@@ -25,10 +25,7 @@ var model = {
 		"url":"http://www.northwestern.edu/",
 		"image":"images/NU_Logo.gif",
 		"relevantCoursework":["Fundamentals of Object-Oriented Programming","Data Structures and Algorithms","Engineering Analysis","Engineering Design and Communication","Calculus 1-3"]
-	}
-	],
-
-	"onlineCourses" : [
+	},
 	{
 		"title":"Udacity Front End Web Development Nanodegree",
 		"provider":"Udacity",
@@ -46,11 +43,8 @@ var model = {
 		"url":"www.lynda.com",
 		"relevantCoursework":["Intro to Java","Object-Oriented Design"]
 	}
-	],
-
-
-
-},
+	]
+,
 work:{
 	"jobs":[
 	{
@@ -95,7 +89,7 @@ projects:{
 	quote:'"Set your life on fire. Seek those who fan your flames." - Rumi'
 }
 
-console.log(model.projects.projects);
+console.log(model.education);
 
 //OCTOPUS
 var octopus = {
@@ -119,6 +113,12 @@ var octopus = {
 	},
 	getQuote:function(){
 		return model.quote;
+	},
+	getEducation:function(){
+		return model.education;
+	},
+	getJobs:function(){
+		return model.work.jobs;
 	}
 
 
@@ -127,14 +127,14 @@ var octopus = {
 //VIEW
 var view = {
 	init:function(){
-
-		console.log(this.resumeHeading);
 		this.render();
 	},
 	render:function(){
 		this.displayTitle();
 		this.displayContacts();
 		this.displayWelcome();
+		this.displayEducation();
+		this.displayWork();
 	},
 	displayTitle:function(){
 		this.resumeHeadingDiv = $('#header');
@@ -146,12 +146,10 @@ var view = {
 		this.contactSection = $(".contact-section");
 		this.contacts = octopus.getContacts();
 		this.contactIcons = octopus.getContactIcons();
-		console.log(this.contacts);
 
 		var i = 0;
 		for(var contact in this.contacts){
 			this.contactItem = $("<div class='col-md-3 contact-item'></div>");
-			console.log(this.contacts[contact]);
 			this.contactItem.html(this.contactIcons[i] + this.contacts[contact]);
 			this.contactSection.append(this.contactItem);
 			i++
@@ -169,192 +167,99 @@ var view = {
 		this.welcomeRow.append(this.bioPic);
 		this.welcomeRow.append(this.welcomeDiv);
 		this.welcomeQuote.html(octopus.getQuote());
-		console.log(octopus.getQuote());
-	}
-}
+	},
 
+	displayEducation:function(){
+		this.educationSectionTitle = $(".education-section-title");
+		this.educationSectionTitle.html("<h1>Education</h1>");
+
+		this.educationSection = $("#education-section");
+		this.relevantCourseworkHeading = $("<h3>Relevant Coursework</h3>");
+		this.displaySchools();
+	},
+	displaySchools:function(){
+
+		this.schools = octopus.getEducation();
+		for(var i=0;i<this.schools.length;i++){
+			console.log(this.schools[i]);
+			this.schoolObject = this.schools[i];
+			this.schoolRow = $("<div class='education-entry row spacing'></div>");
+			this.schoolLogo = $("<img class='col-sm-4 text-left' src=" + this.schoolObject.image + ">");
+			this.schoolRow.append(this.schoolLogo);
+			this.schoolInfoDiv = $("<ul class='col-sm-8 text-right info'></ul>");
+			if(this.schoolObject.hasOwnProperty("name")){
+			this.schoolName = $("<li class='education-name'>" + this.schoolObject.name + "</li>");
+			this.schoolLocation = $("<li class='school-location'>" + this.schoolObject.location + "</li>");
+			this.schoolDegree = $("<li class='degree'>" + this.schoolObject.degree + " in " + this.schoolObject.major + "</li>");
+			this.schoolDates = $("<li class='dates'>" + this.schoolObject.years + "</li>");
+			this.schoolInfoDiv.append(this.schoolName);
+			this.schoolInfoDiv.append(this.schoolLocation);
+			this.schoolInfoDiv.append(this.schoolDegree);
+			this.schoolInfoDiv.append(this.schoolDates);
+			/*this.schoolCourseWork = education.displayCourseWork(education.schools[school].relevantCoursework);*/
+		}
+
+		else{
+			this.courseProvider = $("<li class='education-name'>" + this.schoolObject.provider + "</li>");
+			this.courseDegree = $("<li class='degree'>" + this.schoolObject.title + "</li>");
+			this.courseDates = $("<li class='dates'>" + this.schoolObject.dates + "</li>");
+			this.schoolInfoDiv.append(this.courseProvider);
+			this.schoolInfoDiv.append(this.courseDegree);
+			this.schoolInfoDiv.append(this.courseDates);
+		}
+
+		this.displayCourseWork(this.schoolObject.relevantCoursework);
+
+		this.schoolRow.append(this.schoolInfoDiv);
+		this.educationSection.append(this.schoolRow);
+		this.educationSection.append($("<hr>"));
+
+	}
+},
+
+	displayCourseWork:function(relevantCoursework){
+		this.relevantCourseworkHeading = $("<h3 class='text-right'>Relevant Coursework</h3>")
+		this.relevantCourseworkList = $("<ul class='coursework-list'></ul>");
+		for(var course in relevantCoursework){
+		var courseItem = relevantCoursework[course];
+		this.relevantCourseworkList.append($("<li class='coursework-item'>" + courseItem + "</li>"));
+	}
+	this.schoolInfoDiv.append(this.relevantCourseworkHeading);
+	this.schoolInfoDiv.append(this.relevantCourseworkList);
+	},
+
+	displayWork:function(){
+		this.workSection = $("#work-section");
+		this.workSectionTitle = $("<h1>Work Experience</h1>");
+		$(".work-section-title").append(this.workSectionTitle);
+		this.jobs = octopus.getJobs();
+		console.log(this.jobs.length);
+		for(var i=0;i<this.jobs.length;i++){
+			var job = this.jobs[i];
+			this.workRow = $("<div class='row work-entry'></div>");
+			this.workEmployer = $("<h2 class='work-employer col-sm-6'>" + job.employer + "<span class='work-location'>" + "- "  + job.location + "</span>"  + "</h2>");
+			this.workInfoDiv = $("<div class='col-sm-6'></div>");
+			this.workTitle = $("<h3 class='work-title text-right'>" + job.title + "</h3>");
+			this.workDates = $("<h4 class='work-dates text-right'>"+ job.dates + "</h4>");
+			this.workDescriptionRow = $("<div class='row'></div>");
+			this.workDescription = $("<p class='work-description col-sm-12'>" + job.description + "</p>");
+			this.workInfoDiv.append(this.workTitle);
+			this.workInfoDiv.append(this.workDates);
+
+			this.workRow.append(this.workEmployer);
+			this.workRow.append(this.workInfoDiv);
+			/*this.workDescriptionRow.append(this.workDescription);*/
+			this.workRow.append(this.workDescription);
+
+			this.workSection.append(this.workRow);
+			this.workSection.append($("<hr>"));
+
+		}
+
+	}
+
+}
 octopus.init();
-
-var bio = {
-	"name":"Shamyle N. Ghazali",
-	"role":"Front End Web Developer Extraordinaire",
-	"contact_info":{
-		email:"shamyleg@gmail.com",
-		mobile:"224-241-4290",
-		github:"Shamwow16",
-		location:"Chicago, IL" },
-		"picture_URL":"images/biopic.jpg",
-		"skills":["communication","critical thinking","teamwork","project management"]
-	};
-
-
-//// WELCOME SECTION /////
-/*welcomeRow = $(".welcome");
-var bioPic = $("<img class='col-sm-4 img-responsive img-circle text-right' src='" + bio.picture_URL + "'>");
-var welcomeDiv = $("<div class='col-sm-8 text-center'></div>");
-var welcomeText = $("<h3 class='role text-right'>" + bio.role + "</h3>");
-var portfolioButton = $("<button class='btn btn-primary'>View My Portfolio</button>");
-welcomeDiv.append(welcomeText);
-welcomeDiv.append(portfolioButton);
-welcomeRow.append(bioPic);
-welcomeRow.append(welcomeDiv);
-*/
-
-/////EDUCATION SECTION/////
-
-var education={
-	"schools" : [
-	{
-		"name":"Northwestern University",
-		"location":"Evanston, IL",
-		"degree":"Bachelors of Science",
-		"major":"Chemical Engineering, Thematic focus in Computer Science and French",
-		"years":"2009-2013",
-		"url":"http://www.northwestern.edu/",
-		"image":"images/NU_Logo.gif",
-		"relevantCoursework":["Fundamentals of Object-Oriented Programming","Data Structures and Algorithms","Engineering Analysis","Engineering Design and Communication","Calculus 1-3"]
-	}
-	],
-
-	"onlineCourses" : [
-	{
-		"title":"Udacity Front End Web Development Nanodegree",
-		"provider":"Udacity",
-		"dates":"09/15-Present",
-		"image":"images/Udacity_Logo.gif",
-		"url":"www.udacity.com",
-		"relevantCoursework":["Intro to HTML and CSS","Version Control using GitHub","Responsive Web Design and Image Optimization","Javascript Basics","Intro to JQuery"]
-	},
-
-	{
-		"title":"Foundations of Programming:Fundamentals",
-		"provider":"Lynda.com",
-		"dates":"07/14-08/14",
-		"image":"images/lynda_logo.gif",
-		"url":"www.lynda.com",
-		"relevantCoursework":["Intro to Java","Object-Oriented Design"]
-	}
-	]
-
-
-}
-
-var educationSectionTitle = $("<h1>Education</h1>")
-var relevantCourseworkHeading = $("<h3 class='text-right'>Relevant Coursework</h3>")
-var educationSection = $("#education-section");
-var relevantCourseworkHeading = $("<h3>Relevant Coursework</h3>");
-
-education.displaySchool = function(){
-	$(".education-section-title").prepend(educationSectionTitle);
-	for(var school in education.schools){
-		var schoolRow = $("<div class='education-entry row spacing'></div>");
-		var schoolLogoUrl = education.schools[school].image;
-		var schoolLogo = $("<img class='col-sm-4 text-left' src=" + schoolLogoUrl + ">");
-		schoolRow.append(schoolLogo);
-		var schoolInfoDiv = $("<ul class='col-sm-8 text-right info'></ul>");
-		var schoolName = $("<li class='education-name'>" + education.schools[school].name + "</li>");
-		var schoolLocation = $("<li class='school-location'>" + education.schools[school].location + "</li>");
-		var schoolDegree = $("<li class='degree'>" + education.schools[school].degree + " in " + education.schools[school].major + "</li>");
-		var schoolDates = $("<li class='dates'>" + education.schools[school].years + "</li>");
-		var schoolCourseWork = education.displayCourseWork(education.schools[school].relevantCoursework);
-		schoolInfoDiv.append(schoolName);
-		schoolInfoDiv.append(schoolLocation);
-		schoolInfoDiv.append(schoolDegree);
-		schoolInfoDiv.append(schoolDates);
-		schoolInfoDiv.append(schoolCourseWork);
-		schoolRow.append(schoolInfoDiv);
-		educationSection.append(schoolRow);
-		educationSection.append($("<hr>"));
-	}
-}
-
-education.displayOnlineCourse = function(){
-	for(var onlineCourse in education.onlineCourses){
-		var courseRow = $("<div class='education-entry row spacing'></div>");
-		var courseLogoUrl = education.onlineCourses[onlineCourse].image;
-		var courseLogo = $("<img class='col-sm-4 text-left' src=" + courseLogoUrl + ">");
-		courseRow.append(courseLogo);
-		var courseInfoDiv = $("<ul class='col-sm-8 text-right info'></ul>");
-		var courseName = $("<li class='education-name'>" + education.onlineCourses[onlineCourse].provider + "</li>");
-		var courseDegree = $("<li class='degree'>" + education.onlineCourses[onlineCourse].title + "</li>");
-		var courseDates = $("<li class='dates'>" + education.onlineCourses[onlineCourse].dates + "</li>");
-		var relevantCourseworkHeading = $("<h3 text-right>Relevant Coursework</h3>");
-		var onlineCourseWork = education.displayCourseWork(education.onlineCourses[onlineCourse].relevantCoursework);
-		courseInfoDiv.append(courseName);
-		courseInfoDiv.append(courseDegree);
-		courseInfoDiv.append(courseDates);
-		courseInfoDiv.append(relevantCourseworkHeading);
-		courseInfoDiv.append(onlineCourseWork);
-		courseRow.append(courseInfoDiv);
-		educationSection.append(courseRow);
-		educationSection.append($("<hr>"));
-	}
-}
-
-education.displayCourseWork = function(courseworkList){
-	var relevantCourseworkArray = courseworkList;
-	var relevantCourseworkList = $("<ul class='coursework-list'></ul>");
-	for(var course in relevantCourseworkArray){
-		var courseItem = relevantCourseworkArray[course];
-		relevantCourseworkList.append($("<li class='coursework-item'>" + courseItem + "</li>"));
-	}
-	return relevantCourseworkList;
-}
-education.displaySchool();
-education.displayOnlineCourse();
-
-////WORK SECTION////
-
-var work={
-	"jobs":[
-	{
-		"employer":"Northwestern University Information Technology",
-		"title":"Lead Support Center Analyst",
-		"location":"Evanston, IL",
-		"dates":"04/2011-06/2013",
-		"description":"Provided first tier technical support to Northwestern faculty, staff and students via phone, email and in-person. Performed virus remediation, network troubleshooting, MS Exchange account maintenance and identity management. Provided in-house software training and customer service training to all junior and senior analysts. Presented tech talks aimed at bringing students and faculty members up to date with the latest technologies being introduced on campus."
-	},
-	{
-		"employer":"Regis Technologies",
-		"title":"Temporary Quality Control Engineer",
-		"location":"Morton Grove, IL",
-		"dates":"01/2014-10/2014",
-		"description":"Conducted QC experiments for contract-based pharamaceutical manufacturing. Ran purity assays and improvement studies for quality control. Provided recommendations on increasing purity of active pharamaceutical ingredients (APIs)"
-	},
-	{"employer":"SMS Assist",
-	"title":"Project Manager",
-	"location":"Chicago, IL",
-	"dates":"11/2014-07/2015",
-	"description":"Managed work orders between affiliates and customers to ensure timely work completion. Provided customer support and escalated emergency issues. Ensured that affiliates were paid on time by tracking billed work orders. Assisted the procurement team with finding new affiliates across the country."
-}
-]
-}
-
-var workSection = $("#work-section")
-var workSectionTitle = $("<h1>Work Experience</h1>")
-work.displayWork = function(){
-	for(job in work.jobs){
-		$(".work-section-title").append(workSectionTitle);
-		var workRow = $("<div class='row work-entry'></div>");
-		var workEmployer = $("<h2 class='work-employer col-sm-6'>" + work.jobs[job].employer + "<span class='work-location'>" + "- "  + work.jobs[job].location + "</span>"  + "</h2>");
-		var workInfoDiv = $("<div class='col-sm-6'></div>");
-		var workTitle = $("<h3 class='work-title text-right'>" + work.jobs[job].title + "</h3>");
-		var workDates = $("<h4 class='work-dates text-right'>"+ work.jobs[job].dates + "</h4>");
-		var workDescriptionRow = $("<div class='row'></div>");
-		var workDescription = $("<p class='work-description col-sm-12'>" + work.jobs[job].description + "</p>");
-		workRow.append(workEmployer);
-		workInfoDiv.append(workTitle);
-		workInfoDiv.append(workDates);
-		workRow.append(workInfoDiv);
-		workDescriptionRow.append(workDescription);
-		workRow.append(workDescription);
-		workSection.append(workRow);
-		workSection.append($("<hr>"));
-	}
-}
-
-work.displayWork();
-
 
 /////PROJECTS SECTION /////
 var projects={
